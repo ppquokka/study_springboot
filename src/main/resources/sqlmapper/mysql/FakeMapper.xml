@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fake">   
+<!-- 4.위의 페이크와 아래의 UID가 잘들어갔나 -->
+    <!-- class fake
+    // Map selectByUID(HashMap map){
+
+    // } --> 
+	<select id="selectByUID" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM db_cars.factorys
+        WHERE COMPANY_ID = #{companyId}
+	</select>
+</mapper>
