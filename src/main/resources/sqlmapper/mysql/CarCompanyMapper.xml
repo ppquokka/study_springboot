@@ -4,16 +4,16 @@
 <!-- 검색 --> 
 	<select id="selectSearch" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM db_cars.car_infors
+        FROM db_cars.factorys
         where 1 = 1 
         <choose>
-            <when test="search == 'YEAR'">
+            <when test="search == 'COMPANY_ID'">
             <![CDATA[
-            and YEAR > #{words} 
+            and COMPANY_ID > #{words} 
             ]]>
             </when>
             <otherwise>
-            and CAR_NAME like CONCAT(#{words}, '%')
+            and COMPANY like CONCAT(#{words}, '%')
             </otherwise>
         </choose>
         ;
@@ -22,36 +22,36 @@
 <!-- 전체 --> 
 	<select id="selectAll" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM db_cars.car_infors
+        FROM db_cars.factorys
         where 1 = 1 
 	</select>
 
 <!-- 상세 --> 
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM db_cars.car_infors
-        where CAR_INFOR_ID = #{CAR_INFOR_ID} 
+        FROM db_cars.factorys
+        where COMPANY_ID = #{COMPANY_ID} 
 	</select>
 
 <!-- 입력 -->
     <insert id="insert" parameterType="Map">
-        insert into car_infors
-        (CAR_NAME, YEAR, CAR_INFOR_ID, COMPANY_ID)
+        insert into db_cars.factorys
+        (COMPANY_ID, COMPANY)
         values
-        (#{CAR_NAME}, #{YEAR}, #{CAR_INFOR_ID}, #{COMPANY_ID})
+        (#{COMPANY_ID}, #{COMPANY})
 	</insert>
 
     
 <!-- 수정 -->
     <update id="update" parameterType="Map">
-        update car_infors
-        set CAR_NAME = #{CAR_NAME}
-        where CAR_INFOR_ID = #{CAR_INFOR_ID}
+        update factorys
+        set COMPANY = #{CAR_NAME}
+        where COMPANY_ID = #{COMPANY_ID}
     </update>
 
 <!-- 삭제 -->
     <delete id="delete" parameterType="Map">
-        delete from car_infors
-        where CAR_INFOR_ID = #{CAR_INFOR_ID}
+        delete from factorys
+        where COMPANY_ID = #{COMPANY_ID}
     </delete>
 </mapper>
