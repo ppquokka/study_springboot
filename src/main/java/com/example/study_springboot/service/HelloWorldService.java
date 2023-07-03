@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.study_springboot.dao.SharedDao;
+
 @Service
 public class HelloWorldService {
     @Autowired   // shasredDao 인스턴스화 됨
