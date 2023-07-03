@@ -35,4 +35,7 @@ public class HelloWorldService {
 
         return arrayList;
     }
+
+    public void fakeSelect(String companyId) {
+    }
 }
