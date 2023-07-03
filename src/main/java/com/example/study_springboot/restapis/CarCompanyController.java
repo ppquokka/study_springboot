@@ -12,61 +12,62 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.study_springboot.service.CarInforsService;
+import com.example.study_springboot.service.CarCompanyService;
 
 @RestController
-public class CarInforsController {
+public class CarCompanyController {
     @Autowired
-    CarInforsService carInforsService;
+    CarCompanyService carCompanyService;
 
-    // 예) /selectSearch/YEAR/2020
-    // 예) /selectSearch/CAR_NAME/소
+    // 예) 192.168.0.41:8080/selectSearch/COMPANY/자동차
+    // 예) 192.168.0.41:8080/selectSearch/COMPANY_ID/3
     @GetMapping("/selectSearch/{search}/{words}")
     public ResponseEntity selectSearch(@PathVariable String search, @PathVariable String words) {
-        Object result = carInforsService.selectSearch(search, words);
+        Object result = carCompanyService.selectSearch(search, words);
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping("/selectAll/{CAR_INFOR_ID}")
-    public ResponseEntity selectAll(@PathVariable String CAR_INFOR_ID) {
-        Object result = carInforsService.selectAll(CAR_INFOR_ID);
+    // 192.168.0.41:8080/selectAll/C001
+    @GetMapping("/selectAll/{COMPANY_ID}")
+    public ResponseEntity selectAll(@PathVariable String COMPANY_ID) {
+        Object result = carCompanyService.selectAll(COMPANY_ID);
         return ResponseEntity.ok().body(result);
     }
 
-    // /selectDetail/CI002
-    @GetMapping("/selectDetail/{CAR_INFOR_ID}")
-    public ResponseEntity selectDetail(@PathVariable String CAR_INFOR_ID) {
-        Object result = carInforsService.selectDetail(CAR_INFOR_ID);
+    // 192.168.0.41:8080/selectDetail/C004
+    @GetMapping("/selectDetail/{COMPANY_ID}")
+    public ResponseEntity selectDetail(@PathVariable String COMPANY_ID) {
+        Object result = carCompanyService.selectDetail(COMPANY_ID);
         return ResponseEntity.ok().body(result);
     }
 
-    // 입력 create
+    // 192.168.0.41:8080/insert
     @PostMapping("/insert")
     public ResponseEntity insert(@RequestBody Map paramMap) {
-        Object result = carInforsService.insert(paramMap);
+        Object result = carCompanyService.insert(paramMap);
         return ResponseEntity.ok().body(result);
     }
 
-    // update
+    // 192.168.0.41:8080/update
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody Map paramMap) {
-        Object result = carInforsService.update(paramMap);
+        Object result = carCompanyService.update(paramMap);
         return ResponseEntity.ok().body(result);
     }
 
-    // delete
-    @DeleteMapping("/delete/{CAR_INFOR_ID}")
-    public ResponseEntity delete(@PathVariable String CAR_INFOR_ID) {
-        Object result = carInforsService.delete(CAR_INFOR_ID);
+    // 192.168.0.41:8080/delete/C006
+    @DeleteMapping("/delete/{COMPANY_ID}")
+    public ResponseEntity delete(@PathVariable String COMPANY_ID) {
+        Object result = carCompanyService.delete(COMPANY_ID);
         return ResponseEntity.ok().body(result);
     }
 
-    // 2PC(2 pace commit)
+    // 192.168.0.41:8080/insertDouble
     @PostMapping("/insertDouble")
     public ResponseEntity insertDouble(@RequestBody Map paramMap) {
         Object result = null;
         try {
-            result = carInforsService.insertDouble(paramMap);
+            result = carCompanyService.insertDouble(paramMap);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(result);
         }
