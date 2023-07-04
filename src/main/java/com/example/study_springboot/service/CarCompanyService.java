@@ -18,7 +18,7 @@ public class CarCompanyService {
     // 검색(조건-search : Company Name, Company ID)
     public Object selectSearch(String search, String words) {
         // getOne(String sqlMapId, Object dataMap)
-        String sqlMapId = "CarInfors.selectSearch";
+        String sqlMapId = "Factorys.selectSearch";
         HashMap dataMap = new HashMap<>();
         dataMap.put("search", search);
         dataMap.put("words", words);
@@ -27,7 +27,7 @@ public class CarCompanyService {
         return result;
     }
 
-    // 전체
+    // 전체 
     public Object selectAll(String COMPANY_ID) {
         // getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "Factorys.selectAll";
@@ -51,23 +51,23 @@ public class CarCompanyService {
 
     // 입력 insert
     public Object insert(Map dataMap) {
-        String sqlMapId = "CarInfors.insert";
+        String sqlMapId = "Factorys.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
         return result;
     }
 
     // update
     public Object update(Map dataMap) {
-        String sqlMapId = "CarInfors.update";
+        String sqlMapId = "Factorys.update";
         Object result = sharedDao.update(sqlMapId, dataMap);
         return result;
     }
 
     // delete
-    public Object delete(String CAR_INFOR_ID) {
-        String sqlMapId = "CarInfors.delete";
+    public Object delete(String COMPANY_ID) {
+        String sqlMapId = "Factorys.delete";
         HashMap dataMap = new HashMap<>();
-        dataMap.put("CAR_INFOR_ID", CAR_INFOR_ID);
+        dataMap.put("COMPANY_ID", COMPANY_ID);
 
         Object result = sharedDao.update(sqlMapId, dataMap);
         return result;
@@ -75,7 +75,7 @@ public class CarCompanyService {
 
     // 2PC(2 pace commit) : 같은 값 인서트 2번 
     public Object insertDouble(Map dataMap) {
-        String sqlMapId = "CarInfors.insert";
+        String sqlMapId = "Factorys.insert";
         // sucess
         Object result = sharedDao.insert(sqlMapId, dataMap);
         // error
