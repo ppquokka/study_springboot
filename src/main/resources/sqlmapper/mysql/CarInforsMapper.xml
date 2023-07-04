@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CarInfors">  
+
 <!-- 검색 --> 
 	<select id="selectSearch" parameterType="Map" resultType="Map">
         SELECT * 
@@ -16,6 +17,21 @@
             and CAR_NAME like CONCAT(#{words}, '%')
             </otherwise>
         </choose>
+        ;
+	</select>
+
+<!-- mybatis foreach Map.put("CAR_INFOR_ID_LIST", CAR_INFOR_ID_LIST)-->
+<!-- hashMap에서 get으로 뽑아올 수 있음.컬렉션에는 결과적으로 list가 들어감 -->
+	<select id="selectInUID" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM db_cars.car_infors
+        where 1 = 1
+        WHERE CAR_INFOR_ID IN 
+        <!-- item이란 변수이름은 작성자 마음대로 작성하면 됨 -->
+        <foreach item="CAR_INFOR_ID" index="index" collection="CAR_INFOR_ID_LIST"
+            open="(" separator="," close=")" nullable="true">
+            #{CAR_INFOR_ID}
+            </foreach>
         ;
 	</select>
 

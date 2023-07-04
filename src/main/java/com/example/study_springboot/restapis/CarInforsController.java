@@ -19,6 +19,18 @@ public class CarInforsController {
     @Autowired
     CarInforsService carInforsService;
 
+    // foreach문
+    @GetMapping("/selectInUID")
+    public ResponseEntity selectInUID(@RequestBody Map paramMap) {
+        Object result = null;
+        try {
+            result = carInforsService.selectInUID(paramMap);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok().body(result);
+    }
+
     // 예) /selectSearch/YEAR/2020
     // 예) /selectSearch/CAR_NAME/소
     @GetMapping("/selectSearch/{search}/{words}")
