@@ -45,7 +45,7 @@
 <!-- 수정 -->
     <update id="update" parameterType="Map">
         update factorys
-        set COMPANY = #{CAR_NAME}
+        set COMPANY = #{COMPANY}
         where COMPANY_ID = #{COMPANY_ID}
     </update>
 

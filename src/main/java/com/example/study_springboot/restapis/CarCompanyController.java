@@ -27,18 +27,6 @@ public class CarCompanyController {
         return ResponseEntity.ok().body(result);
     }
 
-<<<<<<< HEAD
-    @GetMapping("/selectAll/{CAR_INFOR_ID}")
-    public ResponseEntity selectAll(@PathVariable String CAR_INFOR_ID) {
-        Object result = carCompanyService.selectAll(CAR_INFOR_ID);
-        return ResponseEntity.ok().body(result);
-    }
-
-    // /selectDetail/CI002
-    @GetMapping("/selectDetail/{CAR_INFOR_ID}")
-    public ResponseEntity selectDetail(@PathVariable String CAR_INFOR_ID) {
-        Object result = carCompanyService.selectDetail(CAR_INFOR_ID);
-=======
     // 192.168.0.41:8080/selectAll/C001
     @GetMapping("/selectAll/{COMPANY_ID}")
     public ResponseEntity selectAll(@PathVariable String COMPANY_ID) {
@@ -50,40 +38,32 @@ public class CarCompanyController {
     @GetMapping("/selectDetail/{COMPANY_ID}")
     public ResponseEntity selectDetail(@PathVariable String COMPANY_ID) {
         Object result = carCompanyService.selectDetail(COMPANY_ID);
->>>>>>> 69bf866f55dcb0f6b10798b74cc5bd20261951cd
         return ResponseEntity.ok().body(result);
     }
 
     // 192.168.0.41:8080/insert
-    @PostMapping("/insert")
+    @PostMapping("/insert/carcompany")
     public ResponseEntity insert(@RequestBody Map paramMap) {
         Object result = carCompanyService.insert(paramMap);
         return ResponseEntity.ok().body(result);
     }
 
     // 192.168.0.41:8080/update
-    @PutMapping("/update")
+    @PutMapping("/update/carcompany")
     public ResponseEntity update(@RequestBody Map paramMap) {
         Object result = carCompanyService.update(paramMap);
         return ResponseEntity.ok().body(result);
     }
 
-<<<<<<< HEAD
-    // delete
-    @DeleteMapping("/delete/{CAR_INFOR_ID}")
-    public ResponseEntity delete(@PathVariable String CAR_INFOR_ID) {
-        Object result = carCompanyService.delete(CAR_INFOR_ID);
-=======
     // 192.168.0.41:8080/delete/C006
     @DeleteMapping("/delete/{COMPANY_ID}")
     public ResponseEntity delete(@PathVariable String COMPANY_ID) {
         Object result = carCompanyService.delete(COMPANY_ID);
->>>>>>> 69bf866f55dcb0f6b10798b74cc5bd20261951cd
         return ResponseEntity.ok().body(result);
     }
 
     // 192.168.0.41:8080/insertDouble
-    @PostMapping("/insertDouble")
+    @PostMapping("/insertDouble/carcompany")
     public ResponseEntity insertDouble(@RequestBody Map paramMap) {
         Object result = null;
         try {
