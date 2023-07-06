@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.study_springboot.service.CarInforsService;
 
 @RestController
-public class CarInforsController {
+public class CarInforsRestController {
     @Autowired
     CarInforsService carInforsService;
 
