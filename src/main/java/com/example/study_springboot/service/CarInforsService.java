@@ -19,22 +19,28 @@ public class CarInforsService {
     public Object selectInUID(Map dataMap) {
         // Object getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectInUID";
-        
-        Object result = sharedDao.getList(sqlMapId, dataMap);
-        return result;
-    }
-    
-    // 검색(조건-search : YEAR, CAR_NAME)
-    public Object selectSearch(String search, String words) {
-        // getOne(String sqlMapId, Object dataMap)
-        String sqlMapId = "CarInfors.selectSearch";
-        HashMap dataMap = new HashMap<>();
-        dataMap.put("search", search);
-        dataMap.put("words", words);
 
         Object result = sharedDao.getList(sqlMapId, dataMap);
         return result;
     }
+
+    // 검색(23.07.06)
+    public Object selectSearch(Map dataMap) {
+        String sqlMapId = "CarInfors.selectSearch";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // // 검색(23.07.04)
+    // public Object selectSearch(String search, String words) {
+    //     getOne(String sqlMapId, Object dataMap)
+    //     HashMap dataMap = new HashMap<>();
+    //     dataMap.put("search", search);
+    //     dataMap.put("words", words);
+
+    //     Object result = sharedDao.getList(sqlMapId, dataMap);
+    //     return result;
+    // }
 
     public Object selectAll(String CAR_INFOR_ID) {
         // getOne(String sqlMapId, Object dataMap)
@@ -80,7 +86,7 @@ public class CarInforsService {
         return result;
     }
 
-    // 2PC(2 pace commit) : 같은 값 인서트 2번 
+    // 2PC(2 pace commit) : 같은 값 인서트 2번
     public Object insertDouble(Map dataMap) {
         String sqlMapId = "CarInfors.insert";
         // sucess
@@ -89,6 +95,5 @@ public class CarInforsService {
         result = sharedDao.insert(sqlMapId, dataMap);
         return result;
     }
-
 
 }

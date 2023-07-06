@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.study_springboot.service.CarInforsService;
 
@@ -34,12 +36,29 @@ public class CarInforsController {
         return ResponseEntity.ok().body(result);
     }
 
+    // SelectSearch
     // 예) /selectSearch/YEAR/2020
     // 예) /selectSearch/CAR_NAME/소
-    @GetMapping("/selectSearch/{search}/{words}")
-    public ResponseEntity selectSearch(@PathVariable String search, @PathVariable String words) {
-        Object result = carInforsService.selectSearch(search, words);
-        return ResponseEntity.ok().body(result);
+    // @GetMapping("/selectSearch/{search}/{words}")
+    // public ResponseEntity selectSearch(@PathVariable String search, @PathVariable String words) {
+    //     Object result = carInforsService.selectSearch(search, words);
+    //     return ResponseEntity.ok().body(result);
+    // }
+
+    // 예) /selectSearch?search=YEAR%words=2020
+    // 위의 url로 날아오면, JS는 search=YEAR를 '이름값이름값'으로
+    // hashmap으로 묶어서 들여옴
+    // words가 params에 들어옴
+    @GetMapping("/selectSearch")   
+    public ModelAndView selectSearch(@RequestParam Map params, ModelAndView modelAndView) {
+        Object result = carInforsService.selectSearch(params);
+        modelAndView.addObject("params", params); // 메인컨트롤러에서가져옴
+        modelAndView.addObject("result", result); 
+
+        // modelAndView.setViewName("/WEB-INF/views/main.jsp");
+        modelAndView.setViewName("/WEB-INF/views/carinfor/list.jsp");
+
+        return modelAndView;
     }
 
     @GetMapping("/selectAll/{CAR_INFOR_ID}")
