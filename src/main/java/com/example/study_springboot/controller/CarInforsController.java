@@ -40,24 +40,49 @@ public class CarInforsController {
     // 예) /selectSearch/YEAR/2020
     // 예) /selectSearch/CAR_NAME/소
     // @GetMapping("/selectSearch/{search}/{words}")
-    // public ResponseEntity selectSearch(@PathVariable String search, @PathVariable String words) {
-    //     Object result = carInforsService.selectSearch(search, words);
-    //     return ResponseEntity.ok().body(result);
+    // public ResponseEntity selectSearch(@PathVariable String search, @PathVariable
+    // String words) {
+    // Object result = carInforsService.selectSearch(search, words);
+    // return ResponseEntity.ok().body(result);
     // }
 
     // 예) /selectSearch?search=YEAR%words=2020
     // 위의 url로 날아오면, JS는 search=YEAR를 '이름값이름값'으로
     // hashmap으로 묶어서 들여옴
     // words가 params에 들어옴
-    @GetMapping("/selectSearch")   
+    @GetMapping("/selectSearch")
     public ModelAndView selectSearch(@RequestParam Map params, ModelAndView modelAndView) {
         Object result = carInforsService.selectSearch(params);
         modelAndView.addObject("params", params); // 메인컨트롤러에서가져옴
-        modelAndView.addObject("result", result); 
+        modelAndView.addObject("result", result);
 
         // modelAndView.setViewName("/WEB-INF/views/main.jsp");
         modelAndView.setViewName("/WEB-INF/views/carinfor/list.jsp");
 
+        return modelAndView;
+    }
+
+
+     // deleteAndSelectSearch with MVC
+     @PostMapping("/deleteAndSelectSearch")
+    public ModelAndView deleteAndSelectSearch(@RequestParam Map params, ModelAndView modelAndView) {
+        Object result = carInforsService.deleteAndSelectSearch(params);
+        modelAndView.addObject("params", params);
+        modelAndView.addObject("result", result);
+
+        modelAndView.setViewName("/WEB-INF/views/carinfor/list_map.jsp");
+        return modelAndView;
+    }
+
+
+    // delete with MVC 
+    @PostMapping("/delete")
+    public ModelAndView delete(@RequestParam Map params, ModelAndView modelAndView) {
+        Object result = carInforsService.delete(params);
+        modelAndView.addObject("params", params);
+        modelAndView.addObject("result", result);
+
+        modelAndView.setViewName("/WEB-INF/views/carinfor/list.jsp");
         return modelAndView;
     }
 

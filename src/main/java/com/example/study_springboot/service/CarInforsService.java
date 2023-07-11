@@ -33,13 +33,13 @@ public class CarInforsService {
 
     // // 검색(23.07.04)
     // public Object selectSearch(String search, String words) {
-    //     getOne(String sqlMapId, Object dataMap)
-    //     HashMap dataMap = new HashMap<>();
-    //     dataMap.put("search", search);
-    //     dataMap.put("words", words);
+    // getOne(String sqlMapId, Object dataMap)
+    // HashMap dataMap = new HashMap<>();
+    // dataMap.put("search", search);
+    // dataMap.put("words", words);
 
-    //     Object result = sharedDao.getList(sqlMapId, dataMap);
-    //     return result;
+    // Object result = sharedDao.getList(sqlMapId, dataMap);
+    // return result;
     // }
 
     public Object selectAll(String CAR_INFOR_ID) {
@@ -76,7 +76,30 @@ public class CarInforsService {
         return result;
     }
 
-    // delete
+    // delete (MVC view)
+    public Object delete(Map dataMap) {
+        String sqlMapId = "CarInfors.delete";
+       
+        Object result = sharedDao.update(sqlMapId, dataMap);
+        return result;
+    }
+
+    // delete (MVC view)
+    public Object deleteAndSelectSearch(Map dataMap) {
+        HashMap result = new HashMap<>();
+        // String sqlMapId = "CarInfors.delete";
+        // result.put("deleteCount", sharedDao.delete(sqlMapId, dataMap));
+        result.put("deleteCount", this.delete(dataMap));
+
+        // sqlMapId = "CarInfors.selectsearch";
+        // result.put("resultList", sharedDao.getOne(sqlMapId, dataMap));
+        result.put("resultList", this.selectSearch(dataMap));
+
+        return result;
+    }
+
+
+    // delete (rest api)
     public Object delete(String CAR_INFOR_ID) {
         String sqlMapId = "CarInfors.delete";
         HashMap dataMap = new HashMap<>();
