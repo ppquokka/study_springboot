@@ -42,6 +42,7 @@ public class CarInforsService {
     // return result;
     // }
 
+    // 전체
     public Object selectAll(String CAR_INFOR_ID) {
         // getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectAll";
@@ -52,6 +53,7 @@ public class CarInforsService {
         return result;
     }
 
+    // 상세
     public Object selectDetail(String CAR_INFOR_ID) {
         // getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectByUID";
